@@ -24,8 +24,8 @@ export function GlassCard({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-40px" }}
-      whileHover={hover ? { y: -3, transition: { duration: 0.25 } } : undefined}
-      className={`rounded-2xl border border-white/[0.08] bg-white/[0.04] p-6 shadow-[0_8px_32px_rgba(0,0,0,0.24)] backdrop-blur-[16px] md:p-8 ${className}`}
+      whileHover={hover ? { y: -5, transition: { duration: 0.18 } } : undefined}
+      className={`rounded-2xl border border-white/[0.12] bg-white/[0.07] p-5 shadow-[0_8px_40px_rgba(0,0,0,0.2)] backdrop-blur-[16px] md:p-7 ${className}`}
     >
       {children}
     </motion.div>

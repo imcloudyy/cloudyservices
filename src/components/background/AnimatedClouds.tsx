@@ -4,13 +4,13 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useCallback, useEffect, useRef } from "react";
 
 const CLOUDS = [
-  { id: 1, x: "8%", y: "12%", scale: 1.1, opacity: 0.14, duration: 48, delay: 0 },
-  { id: 2, x: "62%", y: "8%", scale: 0.9, opacity: 0.1, duration: 55, delay: 4 },
-  { id: 3, x: "35%", y: "28%", scale: 1.3, opacity: 0.08, duration: 62, delay: 2 },
-  { id: 4, x: "78%", y: "35%", scale: 0.75, opacity: 0.12, duration: 44, delay: 6 },
-  { id: 5, x: "15%", y: "55%", scale: 1, opacity: 0.09, duration: 58, delay: 1 },
-  { id: 6, x: "50%", y: "65%", scale: 1.2, opacity: 0.07, duration: 65, delay: 3 },
-  { id: 7, x: "85%", y: "72%", scale: 0.85, opacity: 0.11, duration: 50, delay: 5 },
+  { id: 1, x: "5%", y: "18%", scale: 1.1, opacity: 0.22, duration: 14, delay: 0, tint: "text-sky-200/40" },
+  { id: 2, x: "58%", y: "14%", scale: 0.95, opacity: 0.18, duration: 16, delay: 1, tint: "text-violet-200/35" },
+  { id: 3, x: "30%", y: "32%", scale: 1.25, opacity: 0.15, duration: 18, delay: 0.5, tint: "text-cyan-100/30" },
+  { id: 4, x: "72%", y: "38%", scale: 0.8, opacity: 0.2, duration: 13, delay: 2, tint: "text-sky-100/35" },
+  { id: 5, x: "12%", y: "52%", scale: 1.05, opacity: 0.17, duration: 15, delay: 1.5, tint: "text-indigo-200/30" },
+  { id: 6, x: "48%", y: "62%", scale: 1.15, opacity: 0.14, duration: 17, delay: 0.8, tint: "text-violet-100/28" },
+  { id: 7, x: "82%", y: "68%", scale: 0.9, opacity: 0.19, duration: 14, delay: 2.5, tint: "text-sky-200/32" },
 ];
 
 function CloudShape({ className }: { className?: string }) {
@@ -30,8 +30,8 @@ export function AnimatedClouds() {
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const springX = useSpring(mouseX, { stiffness: 40, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 40, damping: 20 });
+  const springX = useSpring(mouseX, { stiffness: 120, damping: 18 });
+  const springY = useSpring(mouseY, { stiffness: 120, damping: 18 });
 
   const handleMouseMove = useCallback(
     (e: MouseEvent) => {
@@ -39,8 +39,8 @@ export function AnimatedClouds() {
       const rect = containerRef.current.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      mouseX.set(x * 40);
-      mouseY.set(y * 30);
+      mouseX.set(x * 70);
+      mouseY.set(y * 50);
     },
     [mouseX, mouseY],
   );
@@ -53,7 +53,7 @@ export function AnimatedClouds() {
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      className="pointer-events-none fixed -top-[8%] -left-[3%] -right-[3%] bottom-0 z-0 overflow-visible"
       aria-hidden
     >
       {CLOUDS.map((cloud) => (
@@ -77,8 +77,8 @@ function InteractiveCloud({
   springX: ReturnType<typeof useSpring>;
   springY: ReturnType<typeof useSpring>;
 }) {
-  const parallaxX = useTransform(springX, (v) => v * (cloud.id % 3 === 0 ? 1.5 : 0.8));
-  const parallaxY = useTransform(springY, (v) => v * (cloud.id % 2 === 0 ? 1.2 : 0.6));
+  const parallaxX = useTransform(springX, (v) => v * (cloud.id % 3 === 0 ? 2 : 1.2));
+  const parallaxY = useTransform(springY, (v) => v * (cloud.id % 2 === 0 ? 1.6 : 1));
 
   return (
     <motion.div
@@ -91,11 +91,11 @@ function InteractiveCloud({
       }}
     >
       <motion.div
-        className="text-white"
+        className={cloud.tint}
         style={{ scale: cloud.scale, opacity: cloud.opacity }}
         animate={{
-          x: [0, 30, -20, 15, 0],
-          y: [0, -12, 8, -6, 0],
+          x: [0, 55, -40, 25, 0],
+          y: [0, -22, 14, -10, 0],
         }}
         transition={{
           duration: cloud.duration,
@@ -103,8 +103,8 @@ function InteractiveCloud({
           repeat: Infinity,
           ease: "easeInOut",
         }}
-        whileHover={{ opacity: cloud.opacity + 0.08, scale: cloud.scale * 1.06 }}
-        whileTap={{ scale: cloud.scale * 0.98, opacity: cloud.opacity + 0.12 }}
+        whileHover={{ opacity: cloud.opacity + 0.12, scale: cloud.scale * 1.08 }}
+        whileTap={{ scale: cloud.scale * 0.96, opacity: cloud.opacity + 0.15 }}
       >
         <CloudShape className="h-24 w-48 md:h-32 md:w-64 lg:h-40 lg:w-80" />
       </motion.div>

@@ -12,7 +12,7 @@ import { fadeUp } from "@/lib/animations";
 
 export function ContactFooter() {
   return (
-    <footer className="relative px-4 py-20 md:px-6 md:py-28">
+    <footer className="relative px-4 py-16 md:px-6 md:py-20">
       <motion.div
         className="mx-auto max-w-2xl text-center"
         variants={fadeUp}
@@ -20,46 +20,39 @@ export function ContactFooter() {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <p className="text-xs font-light tracking-wide text-white/35">
-          ready to start a deal?
-        </p>
-        <p className="mt-3 text-sm font-light text-white/50">
-          reach out on discord or telegram — i never dm first.
-        </p>
-
-        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <motion.a
             href={DISCORD_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.06] px-6 py-3 text-sm font-light text-white/75 backdrop-blur-md transition-colors hover:border-white/20 hover:bg-white/[0.1] hover:text-white/90"
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
+            className="group inline-flex items-center gap-2.5 rounded-full border border-sky-400/25 bg-sky-500/10 px-6 py-3 text-sm font-light text-sky-100/90 backdrop-blur-md transition-colors hover:border-sky-400/40 hover:bg-sky-500/15"
+            whileHover={{ scale: 1.06, y: -3 }}
+            whileTap={{ scale: 0.96 }}
           >
-            <MessageCircle className="h-4 w-4 text-white/50 group-hover:text-white/70" strokeWidth={1.5} />
+            <MessageCircle className="h-4 w-4 text-sky-300/80" strokeWidth={1.5} />
             @{DISCORD_USERNAME}
-            <ArrowUpRight className="h-3.5 w-3.5 text-white/30 group-hover:text-white/50" strokeWidth={1.5} />
+            <ArrowUpRight className="h-3.5 w-3.5 text-sky-300/50" strokeWidth={1.5} />
           </motion.a>
 
           <motion.a
             href={TELEGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 rounded-full border border-white/[0.06] bg-transparent px-6 py-3 text-sm font-light text-white/45 transition-colors hover:border-white/12 hover:text-white/65"
-            whileHover={{ scale: 1.03, y: -1 }}
-            whileTap={{ scale: 0.97 }}
+            className="group inline-flex items-center gap-2.5 rounded-full border border-violet-400/20 bg-violet-500/10 px-6 py-3 text-sm font-light text-violet-100/80 transition-colors hover:border-violet-400/35 hover:bg-violet-500/15"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.96 }}
           >
-            <Send className="h-3.5 w-3.5" strokeWidth={1.5} />
+            <Send className="h-3.5 w-3.5 text-violet-300/70" strokeWidth={1.5} />
             @{TELEGRAM_USERNAME}
           </motion.a>
         </div>
 
         <motion.p
-          className="mt-16 text-[10px] font-light tracking-wide text-white/20"
-          whileInView={{ opacity: [0, 1] }}
-          viewport={{ once: true }}
+          className="mt-12 text-xs font-light tracking-[0.2em] text-white/35"
+          animate={{ opacity: [0.35, 0.55, 0.35] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         >
-          imcloudy · discord middleman · {new Date().getFullYear()}
+          imcloudy 2026
         </motion.p>
       </motion.div>
     </footer>

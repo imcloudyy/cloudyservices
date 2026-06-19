@@ -31,12 +31,12 @@ export function SectionWrapper({
             className="mb-10 md:mb-12"
           >
             {title && (
-              <h2 className="text-xl font-light tracking-wide text-white/90 md:text-2xl">
+              <h2 className="bg-gradient-to-r from-white via-sky-100 to-violet-200 bg-clip-text text-xl font-light tracking-wide text-transparent md:text-2xl">
                 {title}
               </h2>
             )}
             {subtitle && (
-              <p className="mt-2 max-w-xl text-sm font-light text-white/45 md:text-base">
+              <p className="mt-2 max-w-xl text-sm font-light text-white/55 md:text-base">
                 {subtitle}
               </p>
             )}
